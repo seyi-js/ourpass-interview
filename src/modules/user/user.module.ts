@@ -17,10 +17,12 @@ import { JwtStrategy } from './jwt/jwt.strategy';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get<IAppConfig>('app').jwtSecret,
+        publicKey: config.get<IAppConfig>('app').publicKey,
+        privateKey: config.get<IAppConfig>('app').privateKey,
         signOptions: {
           issuer: config.get<IAppConfig>('app').appURL,
           expiresIn: '2d',
+          algorithm: 'RS256',
         },
       }),
     }),

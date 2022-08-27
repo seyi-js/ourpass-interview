@@ -4,5 +4,7 @@ export default () => ({
     environment: process.env.APP_ENV || 'development',
     jwtSecret: process.env.APP_JWT_SECRET || 'secret',
     appURL: process.env.APP_URL || 'http://localhost:3000',
+    publicKey: process.env.APP_PUBLIC_KEY || '',
+    privateKey: process.env.APP_PRIVATE_KEY || '',
   },
 });

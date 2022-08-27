@@ -4,6 +4,8 @@ export interface IAppConfig {
   environment: string;
   jwtSecret: string;
   appURL: string;
+  publicKey: string;
+  privateKey: string;
 }
 
 export interface IDataBaseConfig {

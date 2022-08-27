@@ -4,8 +4,6 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   BeforeInsert,
-  BeforeUpdate,
-  AfterInsert,
 } from 'typeorm';
 import { IUser } from '../interface';
 import { Hash } from '../utils/hash';
@@ -41,14 +39,5 @@ export class User implements IUser {
   @BeforeInsert()
   async hashPassword() {
     this.password = await Hash.hashPassword(this.password);
-
-    // this.
-  }
-
-  @BeforeUpdate()
-  async updatePassword() {
-    if (this.password) {
-      this.password = await Hash.hashPassword(this.password);
-    }
   }
 }
