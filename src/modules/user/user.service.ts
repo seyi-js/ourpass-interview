@@ -28,7 +28,9 @@ export class UserService {
 
     const user = this.userRepository.create(payload);
 
-    await this.userRepository.save(user);
+    const savedUser = await this.userRepository.save(user);
+
+    return savedUser;
   }
 
   async findOne(payload: Record<string, any>) {

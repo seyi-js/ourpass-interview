@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import appConfig from './config/app.config';
 import { IAppConfig } from './config/config.interface';
 import dbConfig from './config/db.config';
+import { User } from './modules/user/entities/user.entity';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
@@ -17,8 +18,9 @@ import { UserModule } from './modules/user/user.module';
 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (config: ConfigService) => ({
-        ...dbConfig()[config.get<IAppConfig>('app').environment],
+      useFactory: () => ({
+        ...dbConfig().test,
+        entities: [User],
       }),
     }),
 
@@ -27,4 +29,4 @@ import { UserModule } from './modules/user/user.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModuleSpec {}
