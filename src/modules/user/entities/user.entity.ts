@@ -4,11 +4,14 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   BeforeInsert,
+  BeforeUpdate,
+  AfterInsert,
 } from 'typeorm';
+import { IUser } from '../interface';
 import { Hash } from '../utils/hash';
 
-@Entity({ name: 'users' })
-export class User {
+@Entity({ name: 'user' })
+export class User implements IUser {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,7 +26,9 @@ export class User {
   })
   email: string;
 
-  @Column()
+  @Column({
+    select: false,
+  })
   password: string;
 
   //   @OneToMany()
@@ -36,5 +41,14 @@ export class User {
   @BeforeInsert()
   async hashPassword() {
     this.password = await Hash.hashPassword(this.password);
+
+    // this.
+  }
+
+  @BeforeUpdate()
+  async updatePassword() {
+    if (this.password) {
+      this.password = await Hash.hashPassword(this.password);
+    }
   }
 }
