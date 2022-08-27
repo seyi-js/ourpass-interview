@@ -19,6 +19,8 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
+  let userId: number;
+
   describe('create', () => {
     it('should create a user', async () => {
       const payload = newUser;
@@ -27,6 +29,32 @@ describe('UserService', () => {
 
       expect(result.email).toEqual(payload.email);
       expect(result.password).not.toEqual(payload.password);
+
+      userId = result.id;
+    });
+  });
+
+  describe('find', () => {
+    it('should find many users', async () => {
+      const result = await service.find({});
+
+      expect(result.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('update', () => {
+    it('should update a user profile', async () => {
+      const result = await service.update(userId, { firstName: 'Samuel' });
+
+      expect(result.firstName).toEqual('Samuel');
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete a user', async () => {
+      const res = await service.delete(userId);
+
+      expect(res).toBeFalsy();
     });
   });
 });

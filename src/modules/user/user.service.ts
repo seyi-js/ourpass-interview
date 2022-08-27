@@ -44,10 +44,14 @@ export class UserService {
   }
 
   async find(payload: Record<string, any>) {
-    return await this.userRepository.find({ where: payload });
+    const users = await this.userRepository.find({ where: payload });
+
+    return users;
   }
 
   async update(id: number, payload: IUser) {
+    const user = await this.findOne({ id });
+
     const filtered = filterFields(
       payload,
       'firstName',
@@ -56,6 +60,13 @@ export class UserService {
       'password',
     );
 
-    return await this.userRepository.update(id, filtered);
+    return await this.userRepository.save({
+      ...user,
+      ...filtered,
+    });
+  }
+
+  async delete(id: number) {
+    await this.userRepository.delete({ id });
   }
 }

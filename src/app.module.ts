@@ -18,7 +18,7 @@ import { UserModule } from './modules/user/user.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (config: ConfigService) => ({
-        ...dbConfig()[config.get<IAppConfig>('app').environment],
+        ...dbConfig()[process.env.APP_ENV],
       }),
     }),
 
