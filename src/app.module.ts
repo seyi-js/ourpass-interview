@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import appConfig from './config/app.config';
 import dbConfig from './config/db.config';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -12,9 +13,12 @@ import dbConfig from './config/db.config';
       isGlobal: true,
       load: [dbConfig, appConfig],
     }),
+
     TypeOrmModule.forRoot({
       ...dbConfig(),
     }),
+
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

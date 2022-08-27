@@ -15,4 +15,5 @@ export default (): TypeOrmModuleOptions => ({
   migrations: ['dist/database/migrations/**/*{.ts,.js}'],
   migrationsRun: true,
   migrationsTransactionMode: 'all',
+  autoLoadEntities: true,
 });
