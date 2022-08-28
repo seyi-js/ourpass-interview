@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { filterFields } from '../../../utils';
-import { User } from './entities/user.entity';
+import { User } from './entity/user.entity';
 import { IUser } from './interface';
 import { IJwtPayload } from './interface/jwt';
 

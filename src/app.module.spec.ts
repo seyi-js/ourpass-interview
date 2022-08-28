@@ -9,7 +9,8 @@ import { IAppConfig } from './config/config.interface';
 import dbConfig from './config/db.config';
 import { CategoryModule } from './modules/category/category.module';
 import { Category } from './modules/category/entity/category.entity';
-import { User } from './modules/user/entities/user.entity';
+import { PostModule } from './modules/post/post.module';
+import { User } from './modules/user/entity/user.entity';
 import { CustomAuthGuard } from './modules/user/jwt/auth-guard';
 import { UserModule } from './modules/user/user.module';
 
@@ -30,6 +31,7 @@ import { UserModule } from './modules/user/user.module';
 
     UserModule,
     CategoryModule,
+    PostModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: CustomAuthGuard }],

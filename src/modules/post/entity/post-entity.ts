@@ -4,15 +4,14 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
-import { Post } from '../../post/entity/post-entity';
+import { Category } from '../../category/entity/category.entity';
 import { User } from '../../user/entity/user.entity';
 import { IUser } from '../../user/interface';
-import { ICategory } from '../interface';
+import { IPost } from '../interface';
 
 @Entity({ name: 'category' })
-export class Category implements ICategory {
+export class Post implements IPost {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,6 +25,7 @@ export class Category implements ICategory {
   @JoinColumn()
   owner: number | IUser;
 
-  @OneToMany((type) => Post, (post) => post.category)
-  posts: Post[];
+  @ManyToOne((type) => Category, (category) => category.id)
+  @JoinColumn()
+  category: number | Category;
 }
