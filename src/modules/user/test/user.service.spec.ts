@@ -50,6 +50,16 @@ describe('UserService', () => {
     });
   });
 
+  describe('login', () => {
+    it('should login a user', async () => {
+      const { email, password } = newUser;
+
+      const result = await service.login(email, password);
+
+      expect(result).toBeDefined();
+    });
+  });
+
   describe('delete', () => {
     it('should delete a user', async () => {
       const res = await service.delete(userId);
