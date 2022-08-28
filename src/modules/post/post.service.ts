@@ -31,7 +31,7 @@ export class PostService {
   }
 
   async update(id: number, user: IUser, payload: IPost) {
-    const post = await this.findOne({ owner: user.id, id });
+    const post = await this.findOne({ owner: { id: user.id }, id });
 
     const filtered = filterFields(payload, 'title', 'description', 'category');
 
@@ -39,7 +39,7 @@ export class PostService {
   }
 
   async delete(id: number, user: IUser) {
-    await this.findOne({ owner: user.id, id });
+    await this.findOne({ owner: { id: user.id }, id });
 
     await this.postRepository.delete({ id });
   }

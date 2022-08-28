@@ -29,7 +29,7 @@ export class CategoryController {
 
   @Get()
   async find(@AuthUser() user: IUser) {
-    const categories = await this.service.find({ owner: user.id });
+    const categories = await this.service.find({ owner: { id: user.id } });
 
     return {
       message: 'Categories found successfully',

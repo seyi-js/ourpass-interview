@@ -4,8 +4,7 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   BeforeInsert,
-  Generated,
-  PrimaryColumn,
+  JoinColumn,
 } from 'typeorm';
 import { Category } from '../../category/entity/category.entity';
 import { IUser } from '../interface';
@@ -14,8 +13,6 @@ import { Hash } from '../utils/hash';
 @Entity({ name: 'user' })
 export class User implements IUser {
   @PrimaryGeneratedColumn('uuid')
-  // @PrimaryColumn({ name: 'id' })
-  // @Generated('uuid')
   id: string;
 
   @Column()

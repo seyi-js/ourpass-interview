@@ -19,7 +19,7 @@ export class CategoryService {
 
   async find(payload: Record<string, unknown>) {
     return await this.categoryRepository.find({
-      where: payload,
+      where: { ...payload },
       relations: ['owner', 'posts'],
     });
   }
@@ -38,7 +38,7 @@ export class CategoryService {
   }
 
   async update(id: number, user: IUser, payload: ICategory) {
-    const category = await this.findOne({ owner: user.id, id });
+    const category = await this.findOne({ owner: { id: user.id }, id });
 
     const filtered = filterFields(payload, 'name', 'description');
 
@@ -46,7 +46,7 @@ export class CategoryService {
   }
 
   async delete(id: number, user: IUser) {
-    await this.findOne({ owner: user.id, id });
+    await this.findOne({ owner: { id: user.id }, id });
 
     await this.categoryRepository.delete({ id });
   }

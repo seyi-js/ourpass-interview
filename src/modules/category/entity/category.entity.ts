@@ -23,7 +23,7 @@ export class Category implements ICategory {
   description: string;
 
   @ManyToOne((type) => User, (user) => user.id)
-  @JoinColumn()
+  @JoinColumn({ name: 'owner' })
   owner: string | IUser;
 
   @OneToMany((type) => Post, (post) => post.category)

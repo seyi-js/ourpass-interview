@@ -28,7 +28,7 @@ export class PostController {
 
   @Get()
   async myPosts(@AuthUser() user: IUser) {
-    const posts = await this.service.find({ owner: user.id });
+    const posts = await this.service.find({ owner: { id: user.id } });
 
     return {
       message: 'Posts retrieved successfully',
