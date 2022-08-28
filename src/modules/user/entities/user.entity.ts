@@ -5,6 +5,7 @@ import {
   OneToMany,
   BeforeInsert,
 } from 'typeorm';
+import { Category } from '../../category/entity/category.entity';
 import { IUser } from '../interface';
 import { Hash } from '../utils/hash';
 
@@ -29,8 +30,8 @@ export class User implements IUser {
   })
   password: string;
 
-  //   @OneToMany()
-  // posts: Post[];
+  @OneToMany((type) => Category, (category) => category.owner)
+  categories: Category[];
 
   async isPasswordValid(password: string) {
     return await Hash.comparePassword(password, this.password);
