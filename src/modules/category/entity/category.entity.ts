@@ -24,7 +24,7 @@ export class Category implements ICategory {
 
   @ManyToOne((type) => User, (user) => user.id)
   @JoinColumn()
-  owner: number | IUser;
+  owner: string | IUser;
 
   @OneToMany((type) => Post, (post) => post.category)
   posts: Post[];

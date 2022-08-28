@@ -4,5 +4,5 @@ export interface ICategory {
   id?: number;
   name?: string;
   description?: string;
-  owner?: number | IUser;
+  owner?: string | IUser;
 }

@@ -21,7 +21,7 @@ export default (): IDataBaseConfig => ({
     synchronize: true,
     migrationsTableName: 'migrations',
 
-    migrations: ['dist/database/migrations/**/*{.ts,.js}'],
+    migrations: ['dist/src/database/migrations/**/*{.ts,.js}'],
     migrationsRun: true,
     migrationsTransactionMode: 'all',
     autoLoadEntities: true,
@@ -38,7 +38,7 @@ export default (): IDataBaseConfig => ({
     synchronize: false,
     migrationsTableName: 'migrations',
 
-    migrations: ['dist/database/migrations/**/*{.ts,.js}'],
+    migrations: ['dist/src/database/migrations/**/*{.ts,.js}'],
     migrationsRun: true,
     migrationsTransactionMode: 'all',
     autoLoadEntities: true,

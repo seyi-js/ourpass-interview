@@ -60,7 +60,7 @@ export class UserService {
     return users;
   }
 
-  async update(id: number, payload: IUser) {
+  async update(id: string, payload: IUser) {
     const user = await this.findOne({ id });
 
     const filtered = filterFields(
@@ -77,7 +77,7 @@ export class UserService {
     });
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     await this.userRepository.delete({ id });
   }
 

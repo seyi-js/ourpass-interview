@@ -23,7 +23,7 @@ export class Post implements IPost {
 
   @ManyToOne((type) => User, (user) => user.id)
   @JoinColumn()
-  owner: number | IUser;
+  owner: string | IUser;
 
   @ManyToOne((type) => Category, (category) => category.id)
   @JoinColumn()

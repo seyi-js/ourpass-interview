@@ -5,6 +5,6 @@ export interface IPost {
   id?: number;
   title?: string;
   description?: string;
-  owner?: number | IUser;
+  owner?: string | IUser;
   category?: number | ICategory;
 }
