@@ -9,6 +9,7 @@ import { IAppConfig } from './config/config.interface';
 import dbConfig from './config/db.config';
 import { CategoryModule } from './modules/category/category.module';
 import { Category } from './modules/category/entity/category.entity';
+import { Post } from './modules/post/entity/post-entity';
 import { PostModule } from './modules/post/post.module';
 import { User } from './modules/user/entity/user.entity';
 import { CustomAuthGuard } from './modules/user/jwt/auth-guard';
@@ -25,7 +26,7 @@ import { UserModule } from './modules/user/user.module';
       imports: [ConfigModule],
       useFactory: () => ({
         ...dbConfig().test,
-        entities: [User, Category],
+        entities: [User, Category, Post],
       }),
     }),
 

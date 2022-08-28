@@ -10,13 +10,13 @@ import { User } from '../../user/entity/user.entity';
 import { IUser } from '../../user/interface';
 import { IPost } from '../interface';
 
-@Entity({ name: 'category' })
+@Entity({ name: 'post' })
 export class Post implements IPost {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   description: string;

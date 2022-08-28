@@ -33,7 +33,7 @@ export class PostService {
   async update(id: number, user: IUser, payload: IPost) {
     const post = await this.findOne({ owner: user.id, id });
 
-    const filtered = filterFields(payload, 'name', 'description', 'category');
+    const filtered = filterFields(payload, 'title', 'description', 'category');
 
     return await this.postRepository.save({ ...post, ...filtered });
   }
