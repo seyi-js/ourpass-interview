@@ -2,8 +2,8 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { IUser } from '../../user/interface';
@@ -20,7 +20,7 @@ export class Category implements ICategory {
   @Column()
   description: string;
 
-  @OneToOne((type) => User, (user) => user.id)
+  @ManyToOne((type) => User, (user) => user.id)
   @JoinColumn()
   owner: number | IUser;
 }
