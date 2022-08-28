@@ -19,7 +19,7 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
-  let userId: number;
+  let userId: string;
 
   describe('create', () => {
     it('should create a user', async () => {
