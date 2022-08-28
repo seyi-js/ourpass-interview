@@ -1,5 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing';
-import { AppModuleSpec } from '../../../app.module.spec';
+import { AppModuleSpec } from '../../../test.module';
 import { IUser } from '../../user/interface';
 import { newUser } from '../../user/test/stub';
 import { UserService } from '../../user/user.service';
@@ -70,7 +70,7 @@ describe('PostService', () => {
 
   describe('findOne', () => {
     it('should find a post', async () => {
-      const result = await service.findOne({ id, owner: user.id });
+      const result = await service.findOne({ id, owner: { id: user.id } });
 
       expect(result).toBeDefined();
     });
