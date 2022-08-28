@@ -36,6 +36,16 @@ export class UserController {
     };
   }
 
+  @Get('/me')
+  async getMe(@AuthUser() user: IUser) {
+    const userInfo = await this.service.findOne({ id: user.id });
+
+    return {
+      message: 'User retrieved successfully',
+      data: userInfo,
+    };
+  }
+
   @Put()
   async update(@Body() payload: UpdateProfileDTO, @AuthUser() user: IUser) {
     const result = await this.service.update(user.id, payload);

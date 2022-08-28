@@ -39,7 +39,10 @@ export class UserService {
   }
 
   async findOne(payload: Record<string, any>) {
-    const result = await this.userRepository.findOne({ where: payload });
+    const result = await this.userRepository.findOne({
+      where: payload,
+      relations: ['categories'],
+    });
 
     if (!result) {
       throw new NotFoundException('User not found');
@@ -49,7 +52,10 @@ export class UserService {
   }
 
   async find(payload: Record<string, any>) {
-    const users = await this.userRepository.find({ where: payload });
+    const users = await this.userRepository.find({
+      where: payload,
+      relations: ['categories'],
+    });
 
     return users;
   }
