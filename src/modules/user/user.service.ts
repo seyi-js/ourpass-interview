@@ -41,7 +41,7 @@ export class UserService {
   async findOne(payload: Record<string, any>) {
     const result = await this.userRepository.findOne({
       where: payload,
-      relations: ['categories'],
+      relations: ['categories', 'categories.posts'],
     });
 
     if (!result) {

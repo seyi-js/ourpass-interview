@@ -20,14 +20,14 @@ export class CategoryService {
   async find(payload: Record<string, unknown>) {
     return await this.categoryRepository.find({
       where: payload,
-      relations: ['owner'],
+      relations: ['owner', 'posts'],
     });
   }
 
   async findOne(payload: Record<string, unknown>) {
     const category = await this.categoryRepository.findOne({
       where: payload,
-      relations: ['owner'],
+      relations: ['owner', 'posts'],
     });
 
     if (!category) {
